@@ -44,7 +44,7 @@ create_pemfile() {
  echo "Extracting AWS PEM"
  echo "-----------------------------------"
  . ./IN/$RES_AWS_PEM/integration.env
- echo key > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+ echo $key > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  echo "Completed Extracting AWS PEM"
