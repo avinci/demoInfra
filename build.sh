@@ -43,11 +43,12 @@ get_statefile() {
 create_pemfile() {
  echo "Extracting AWS PEM"
  echo "-----------------------------------"
- . ./IN/$RES_AWS_PEM/integration.env
- echo $key > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
- chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
- cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
- cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.formJSONValues | map(.label + "=" + .value)|.[]'
+# . ./IN/$RES_AWS_PEM/integration.env
+# echo $key > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+# chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+# cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+ cat ./IN/$RES_AWS_PEM/integration.json
+ cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.formJSONValues | map(.value)|.[]'
  echo "Completed Extracting AWS PEM"
  echo "-----------------------------------"
 }
@@ -79,8 +80,8 @@ save_statefile() {
 
 main() {
   eval `ssh-agent -s`
-  install_terraform
-  get_statefile
+  #install_terraform
+  #get_statefile
   create_pemfile
   #apply_changes
   #save_statefile
