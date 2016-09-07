@@ -43,9 +43,11 @@ get_statefile() {
 create_pemfile() {
  echo "Extracting AWS PEM"
  echo "-----------------------------------"
- cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.key' > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
- chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
- cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+ cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.key'
+
+ #cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.key' > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+ #chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+ #cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  echo "Completed Extracting AWS PEM"
  echo "-----------------------------------"
 }
