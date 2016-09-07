@@ -47,6 +47,7 @@ create_pemfile() {
  echo $key > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
+ cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.formJSONValues | map(.label + "=" + .value)|.[]'
  echo "Completed Extracting AWS PEM"
  echo "-----------------------------------"
 }
