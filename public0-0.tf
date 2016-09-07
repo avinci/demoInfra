@@ -50,7 +50,6 @@ resource "aws_security_group" "demoInstSG" {
   }
 }
 
-# ========================Load Balancers=======================
 # Web Security group
 resource "aws_security_group" "demoWebSG" {
   name = "demoWebSG"
@@ -78,38 +77,12 @@ resource "aws_security_group" "demoWebSG" {
   }
 }
 
-# Container instances for ECS Prod
-resource "aws_instance" "prodECSIns" {
-  depends_on = [
-    "aws_ecs_cluster.prod-aws"]
-
-  count = 4
-
-  # ami = "${var.ecsAmi}"
-  ami = "${lookup(var.ecsAmi, var.region)}"
-  availability_zone = "${lookup(var.availability_zone, var.region)}"
-  instance_type = "t2.micro"
-  key_name = "${var.aws_key_name}"
-  subnet_id = "${aws_subnet.demoPubSN0-0.id}"
-  iam_instance_profile = "${aws_iam_instance_profile.demoECSInstProf.name}"
-  associate_public_ip_address = true
-  source_dest_check = false
-  user_data = "#!/bin/bash \n echo ECS_CLUSTER=${aws_ecs_cluster.prod-aws.name} >> /etc/ecs/ecs.config"
-
-  security_groups = [
-    "${aws_security_group.demoInstSG.id}"]
-
-  tags = {
-    Name = "demoProdECSIns${count.index}"
-  }
-}
-
 # Container instances for ECS Test
 resource "aws_instance" "testECSIns" {
   depends_on = [
     "aws_ecs_cluster.test-aws"]
 
-  count = 3
+  count = 2
 
   # ami = "${var.ecsAmi}"
   ami = "${lookup(var.ecsAmi, var.region)}"
@@ -127,5 +100,31 @@ resource "aws_instance" "testECSIns" {
 
   tags = {
     Name = "demoTestECSIns${count.index}"
+  }
+}
+
+# Container instances for ECS Prod
+resource "aws_instance" "prodECSIns" {
+  depends_on = [
+    "aws_ecs_cluster.prod-aws"]
+
+  count = 3
+
+  # ami = "${var.ecsAmi}"
+  ami = "${lookup(var.ecsAmi, var.region)}"
+  availability_zone = "${lookup(var.availability_zone, var.region)}"
+  instance_type = "t2.micro"
+  key_name = "${var.aws_key_name}"
+  subnet_id = "${aws_subnet.demoPubSN0-0.id}"
+  iam_instance_profile = "${aws_iam_instance_profile.demoECSInstProf.name}"
+  associate_public_ip_address = true
+  source_dest_check = false
+  user_data = "#!/bin/bash \n echo ECS_CLUSTER=${aws_ecs_cluster.prod-aws.name} >> /etc/ecs/ecs.config"
+
+  security_groups = [
+    "${aws_security_group.demoInstSG.id}"]
+
+  tags = {
+    Name = "demoProdECSIns${count.index}"
   }
 }
