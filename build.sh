@@ -73,7 +73,7 @@ destroy_changes() {
 
   echo "destroy changes"
   echo "-----------------------------------"
-  terraform destroy -force
+  terraform destroy -force -var-file=/build/IN/$RES_AWS_CREDS/integration.env
   popd
 }
 
@@ -91,8 +91,8 @@ main() {
   eval `ssh-agent -s`
   install_terraform
   get_statefile
+  create_pemfile
   destroy_changes
-  #create_pemfile
   #apply_changes
   save_statefile
 }
