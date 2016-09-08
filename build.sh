@@ -45,7 +45,6 @@ create_pemfile() {
  echo "-----------------------------------"
  cat ./IN/$RES_AWS_PEM/integration.json  | jq -r '.key' > ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  chmod 600 ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
- cat ./IN/$REPO_RESOURCE_NAME/gitRepo/demo-key.pem
  echo "Completed Extracting AWS PEM"
  echo "-----------------------------------"
 }
@@ -92,8 +91,8 @@ main() {
   install_terraform
   get_statefile
   create_pemfile
-  #destroy_changes
-  apply_changes
+  destroy_changes
+  #apply_changes
   save_statefile
 }
 
