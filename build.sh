@@ -57,7 +57,7 @@ apply_changes() {
   ls -al ~/.ssh/
   which ssh-agent
 
-  echo "applying config changes"
+  echo "planning changes"
   echo "-----------------------------------"
   terraform plan -var-file=/build/IN/$RES_AWS_CREDS/integration.env
   echo "apply changes"
@@ -65,6 +65,18 @@ apply_changes() {
   terraform apply -var-file=/build/IN/$RES_AWS_CREDS/integration.env
   popd
 }
+
+
+destroy_changes() {
+  pushd /build/IN/$REPO_RESOURCE_NAME/gitRepo
+  echo "-----------------------------------"
+
+  echo "destroy changes"
+  echo "-----------------------------------"
+  terraform destroy -force
+  popd
+}
+
 
 save_statefile() {
   echo "Copy state output to output directory"
@@ -79,6 +91,7 @@ main() {
   eval `ssh-agent -s`
   install_terraform
   get_statefile
+  #destroy_changes
   create_pemfile
   apply_changes
   save_statefile
