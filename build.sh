@@ -91,9 +91,9 @@ main() {
   eval `ssh-agent -s`
   install_terraform
   get_statefile
-  #destroy_changes
-  create_pemfile
-  apply_changes
+  destroy_changes
+  #create_pemfile
+  #apply_changes
   save_statefile
 }
 
