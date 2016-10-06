@@ -49,6 +49,16 @@ create_pemfile() {
  echo "-----------------------------------"
 }
 
+destroy_changes() {
+  pushd /build/IN/$REPO_RESOURCE_NAME/gitRepo
+  echo "-----------------------------------"
+
+  echo "destroy changes"
+  echo "-----------------------------------"
+  terraform destroy -force -var-file=/build/IN/$RES_AWS_CREDS/integration.env
+  popd
+}
+
 apply_changes() {
   pushd /build/IN/$REPO_RESOURCE_NAME/gitRepo
   echo "-----------------------------------"
@@ -65,18 +75,6 @@ apply_changes() {
   popd
 }
 
-
-destroy_changes() {
-  pushd /build/IN/$REPO_RESOURCE_NAME/gitRepo
-  echo "-----------------------------------"
-
-  echo "destroy changes"
-  echo "-----------------------------------"
-  terraform destroy -force -var-file=/build/IN/$RES_AWS_CREDS/integration.env
-  popd
-}
-
-
 save_statefile() {
   echo "Copy state output to output directory"
   echo "-----------------------------------"
@@ -91,8 +89,8 @@ main() {
   install_terraform
   get_statefile
   create_pemfile
-  #destroy_changes
-  apply_changes
+  destroy_changes
+  #apply_changes
   save_statefile
 }
 
