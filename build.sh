@@ -89,8 +89,8 @@ main() {
   install_terraform
   get_statefile
   create_pemfile
-  #destroy_changes
-  apply_changes
+  destroy_changes
+  #apply_changes
   save_statefile
 }
 
