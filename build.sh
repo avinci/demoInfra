@@ -30,7 +30,10 @@ install_terraform() {
 get_params() {
   echo "Set PARAM from" $RES_PARAMS
   pushd /build/IN/$RES_PARAMS
-  cat version.json | jq -r '.version.propertyBag.params | tostring'  > params.txt
+
+  cat version.json | jq '.version.propertyBag.params' | \
+  jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" > params.txt
+  
   cat params.txt
   echo "Completed Set PARAM from" $RES_MICRO_IMAGE
 }
