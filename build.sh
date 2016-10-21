@@ -5,6 +5,7 @@ export TF_VERSION=0.6.9
 export REPO_RESOURCE_NAME="demo-infra-repo"
 export RES_AWS_CREDS="aws-demo-creds"
 export RES_AWS_PEM="aws-demo-pem"
+export RES_PARAMS="infra-params"
 
 install_terraform() {
   pushd $TF_INSALL_LOCATION
@@ -24,6 +25,12 @@ install_terraform() {
   local tf_version=$(terraform version)
   echo "Terraform version: $tf_version"
   popd
+}
+
+get_params() {
+  pushd /build/IN/$RES_PARAMS
+  cat version.json
+
 }
 
 get_statefile() {
@@ -86,6 +93,7 @@ save_statefile() {
 
 main() {
   eval `ssh-agent -s`
+  get_params
   #install_terraform
   #get_statefile
   #create_pemfile
