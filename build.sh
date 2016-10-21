@@ -31,7 +31,7 @@ get_params() {
   echo "Set PARAM from" $RES_PARAMS
   pushd /build/IN/$RES_PARAMS
   cat version.json | jq '.version.propertyBag.params' | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" > params.txt
-  cat params.txt
+  . params.txt
   popd
   echo "Completed Set PARAM from" $RES_MICRO_IMAGE
 }
@@ -85,24 +85,24 @@ apply_changes() {
   popd
 }
 
-save_statefile() {
-  echo "Copy state output to output directory"
-  echo "-----------------------------------"
-  cp /build/IN/$REPO_RESOURCE_NAME/gitRepo/terraform.tfstate /build/state/
-  ls -al /build/state/
-  echo "Successfully copied build output"
-  echo "-----------------------------------"
-}
-
 main() {
   eval `ssh-agent -s`
   get_params
-  #install_terraform
-  #get_statefile
-  #create_pemfile
-  #destroy_changes
-  #apply_changes
-  #save_statefile
+  install_terraform
+  get_statefile
+  create_pemfile
+
+  if [ $INFRA_ACTION=="destroy" ]; then
+    echo "DESTROYING INFRA"
+    echo "-----------------------------------"
+    destroy_changes
+  fi
+
+  if [ $INFRA_ACTION=="provision" ]; then
+    echo "PROVISIONING INFRA"
+    echo "-----------------------------------"
+    apply_changes
+  fi
 }
 
 main
