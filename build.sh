@@ -86,12 +86,12 @@ save_statefile() {
 
 main() {
   eval `ssh-agent -s`
-  install_terraform
-  get_statefile
-  create_pemfile
+  #install_terraform
+  #get_statefile
+  #create_pemfile
   #destroy_changes
-  apply_changes
-  save_statefile
+  #apply_changes
+  #save_statefile
 }
 
 main
