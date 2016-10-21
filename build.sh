@@ -88,21 +88,22 @@ apply_changes() {
 main() {
   eval `ssh-agent -s`
   get_params
-  install_terraform
-  get_statefile
-  create_pemfile
-
-  if [ $INFRA_ACTION=="destroy" ]; then
-    echo "DESTROYING INFRA"
-    echo "-----------------------------------"
-    destroy_changes
-  fi
-
-  if [ $INFRA_ACTION=="provision" ]; then
-    echo "PROVISIONING INFRA"
-    echo "-----------------------------------"
-    apply_changes
-  fi
+  echo $INFRA_ACTION
+#  install_terraform
+#  get_statefile
+#  create_pemfile
+#
+#  if [ $INFRA_ACTION=="destroy" ]; then
+#    echo "DESTROYING INFRA"
+#    echo "-----------------------------------"
+#    destroy_changes
+#  fi
+#
+#  if [ $INFRA_ACTION=="provision" ]; then
+#    echo "PROVISIONING INFRA"
+#    echo "-----------------------------------"
+#    apply_changes
+#  fi
 }
 
 main
