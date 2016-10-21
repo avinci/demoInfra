@@ -92,14 +92,14 @@ main() {
   get_statefile
   create_pemfile
 
-  if [ $INFRA_ACTION=="destroy" ]; then
+  if [ $INFRA_ACTION="destroy" ]; then
     echo "DESTROYING INFRA"
     echo "-----------------------------------"
     echo $INFRA_ACTION
     #destroy_changes
   fi
 
-  if [ $INFRA_ACTION=="provision" ]; then
+  if [ $INFRA_ACTION="provision" ]; then
     echo "PROVISIONING INFRA"
     echo "-----------------------------------"
     echo $INFRA_ACTION
