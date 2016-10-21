@@ -90,7 +90,7 @@ main() {
   get_params
   echo $INFRA_ACTION
 #  install_terraform
-#  get_statefile
+  get_statefile
 #  create_pemfile
 #
 #  if [ $INFRA_ACTION=="destroy" ]; then
