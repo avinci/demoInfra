@@ -82,7 +82,7 @@ resource "aws_instance" "testECSIns" {
   depends_on = [
     "aws_ecs_cluster.test-aws"]
 
-  count = 2
+  count = 0
 
   # ami = "${var.ecsAmi}"
   ami = "${lookup(var.ecsAmi, var.region)}"
@@ -108,7 +108,7 @@ resource "aws_instance" "prodECSIns" {
   depends_on = [
     "aws_ecs_cluster.prod-aws"]
 
-  count = 3
+  count = 0
 
   # ami = "${var.ecsAmi}"
   ami = "${lookup(var.ecsAmi, var.region)}"
