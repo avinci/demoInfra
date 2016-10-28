@@ -91,20 +91,23 @@ main() {
   install_terraform
   get_statefile
   create_pemfile
+  destroy_changes
+  #apply_changes
 
-  if [ $INFRA_ACTION="destroy" ]; then
-    echo "DESTROYING INFRA"
-    echo "-----------------------------------"
-    echo $INFRA_ACTION
-    destroy_changes
-  fi
 
-  if [ $INFRA_ACTION="provision" ]; then
-    echo "PROVISIONING INFRA"
-    echo "-----------------------------------"
-    echo $INFRA_ACTION
-    apply_changes
-  fi
+#  if [ $INFRA_ACTION="destroy" ]; then
+#    echo "DESTROYING INFRA"
+#    echo "-----------------------------------"
+#    echo $INFRA_ACTION
+#    destroy_changes
+#  fi
+#
+#  if [ $INFRA_ACTION="provision" ]; then
+#    echo "PROVISIONING INFRA"
+#    echo "-----------------------------------"
+#    echo $INFRA_ACTION
+#    apply_changes
+#  fi
 }
 
 main
