@@ -93,8 +93,6 @@ main() {
   create_pemfile
   destroy_changes
   #apply_changes
-  ls -al /build/IN/build-ami/runSh
-
 
 #  if [ $INFRA_ACTION="destroy" ]; then
 #    echo "DESTROYING INFRA"
