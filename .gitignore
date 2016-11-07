@@ -11,3 +11,4 @@ tmpEcs*.config
 demo-key.pem
 *.pem
 *.tfvars
+local-*-setup.sh

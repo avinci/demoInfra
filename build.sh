@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 export TF_INSALL_LOCATION=/opt
-export TF_VERSION=0.6.9
+export TF_VERSION=0.7.7
 export REPO_RESOURCE_NAME="demo-infra-repo"
 export RES_AWS_CREDS="aws-demo-creds"
 export RES_AWS_PEM="aws-demo-pem"
