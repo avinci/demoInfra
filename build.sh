@@ -93,6 +93,7 @@ main() {
   create_pemfile
   destroy_changes
   #apply_changes
+  ls -al /build/IN/build-ami
 
 
 #  if [ $INFRA_ACTION="destroy" ]; then
